@@ -40,9 +40,9 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-    env_file: .env.test
+    env_file: .env
     environment:
-      RAILS_ENV: test
+      RAILS_ENV: development
       ELASTICSEARCH_URL: http://elasticsearch:9200
     restart: always
     entrypoint: ./entrypoints/docker-entrypoint.sh
