@@ -1,0 +1,71 @@
+<div class="mb-[2.5rem] flex items-center justify-between">
+  <h1 class="text-[2.5rem] text-zinc-600">Lista de municipes</h1>
+  <%= link_to "Cadastrar", new_municipe_path, class: "rounded-lg py-3 px-5 bg-zinc-600 text-white inline-block font-medium cursor-pointer" %>
+</div>
+<%= form_with url: municipes_path, method: :get, local: true, class: "mb-[2.5rem]" do |form| %>
+  <div class="mb-2">
+    <%= form.label :search, class: "w-full inline-block" %>
+    <%= form.text_field :search,
+                        value: params[:search],
+                        class: "h-14 w-full border-2 border-zinc-200 p-3 outline-none",
+                        autocomplete: "off",
+                        placeholder: "Digite os critérios para filtrar" %>
+  </div>
+  <%= form.submit t("helpers.subtitles.search"), class: "h-14 w-full bg-zinc-600 text-white font-bold py-2 px-4 rounded hover:cursor-pointer" %>
+<% end %>
+<% if @municipes.count > 0 %>
+  <% @municipes.each do |municipe| %>
+    <div class="flex items-start gap-5 border-2 shadow-xl bg-white rounded-md p-4 mb-6">
+      <div class="relative w-80 h-[20.5rem] rounded-md overflow-hidden">
+        <% if municipe.photo.present? %>
+          <%= image_tag url_for(municipe.photo) %>
+        <% end %>
+      </div>
+      <div class="flex flex-col gap-4 mt-1">
+        <p class="text-zinc-500"><span class="font-bold mr-1">Nome completo:</span>
+          <%= municipe.full_name %></p>
+        <p class="text-zinc-500"><span class="font-bold mr-1">CPF:</span>
+          <%= municipe.cpf %></p>
+        <p class="text-zinc-500"><span class="font-bold mr-1">CNS:</span>
+          <%= municipe.cns %></p>
+        <p class="text-zinc-500"><span class="font-bold mr-1">Email:</span>
+          <%= municipe.email %></p>
+        <div class="flex flex-wrap gap-6">
+          <p class="text-zinc-500"><span class="font-bold mr-1">Data Nascimento:</span>
+            <%= municipe.date_of_birth %></p>
+          <p class="text-zinc-500"><span class="font-bold mr-1">Telefone:</span>
+            <%= municipe.phone %></p>
+          <p class="text-zinc-500"><span class="font-bold mr-1">Status:</span>
+            <%= municipe.status %></p>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <p class="text-zinc-500"><span class="font-bold mr-1">Rua:</span>
+            <%= municipe.address.street %></p>
+          <p class="text-zinc-500"><span class="font-bold mr-1">Cep:</span>
+            <%= municipe.address.cep %></p>
+          <p class="text-zinc-500"><span class="font-bold mr-1">Bairro:</span>
+            <%= municipe.address.district %></p>
+          <p class="text-zinc-500"><span class="font-bold mr-1">Cidade:</span>
+            <%= municipe.address.city %></p>
+        </div>
+        <div class="flex flex-wrap gap-6">
+          <p class="text-zinc-500"><span class="font-bold mr-1">UF:</span>
+            <%= municipe.address.uf %></p>
+          <% if municipe.address.complement.present? %>
+            <p class="text-zinc-500"><span class="font-bold mr-1">Complemento:</span>
+              <%= municipe.address.complement %></p>
+          <% end %>
+          <% if municipe.address.ibge_code.present? %>
+            <p class="text-zinc-500"><span class="font-bold mr-1">IBGE:</span>
+              <%= municipe.address.ibge_code %></p>
+          <% end %>
+        </div>
+        <%= link_to "Editar", edit_municipe_path(municipe), class: "rounded-lg w-20 py-2 px-4 bg-zinc-600 text-white inline-block font-medium cursor-pointer" %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <p class="text-zinc-500">
+    Nenhum munícipe encontrado.
+  </p>
+<% end %>
