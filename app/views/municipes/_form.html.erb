@@ -1,0 +1,94 @@
+<%= form_with(model: locals[:municipe], url: locals[:url], class: "contents", controller: 'municipe-form') do |form| %>
+  <div id="municipe-form" data-controller="municipe-form">
+    <div class="my-5">
+      <%= form.label :full_name, t('activerecord.attributes.municipe.full_name') %>
+      <%= form.text_field :full_name, class: "block shadow border #{@municipe.errors[:full_name].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+      <% if @municipe.errors[:full_name].present? %>
+        <p class="text-red-500 text-sm mt-1">
+          <%= @municipe.errors[:full_name].first %>
+        </p>
+      <% end %>
+    </div>
+    <div class="my-5">
+      <div class="flex justify-between">
+        <div class="w-1/3">
+          <%= form.label :cpf, t('activerecord.attributes.municipe.cpf')%>
+          <%= form.text_field :cpf, class: "block shadow border #{@municipe.errors[:cpf].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+          <% if @municipe.errors[:cpf].present? %>
+            <p class="text-red-500 text-sm mt-1">
+              <%= @municipe.errors[:cpf].first %>
+            </p>
+          <% end %>
+        </div>
+        <div class="w-1/3 px-2">
+          <%= form.label :cns, t('activerecord.attributes.municipe.cns') %>
+          <%= form.text_field :cns, class: "block shadow border #{@municipe.errors[:cns].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+          <% if @municipe.errors[:cns].present? %>
+            <p class="text-red-500 text-sm mt-1">
+              <%= @municipe.errors[:cns].first %>
+            </p>
+          <% end %>
+        </div>
+        <div class="w-1/3">
+          <%= form.label :date_of_birth, t('activerecord.attributes.municipe.date_of_birth') %>
+          <%= form.date_field :date_of_birth, class: "block shadow border #{@municipe.errors[:date_of_birth].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+          <% if @municipe.errors[:date_of_birth].present? %>
+            <p class="text-red-500 text-sm mt-1">
+              <%= @municipe.errors[:date_of_birth].first %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="my-5">
+      <div class="flex justify-between">
+        <div class="w-1/3">
+          <%= form.label :phone, t('activerecord.attributes.municipe.phone') %>
+          <%= form.text_field :phone, class: "block shadow border #{@municipe.errors[:phone].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+          <% if @municipe.errors[:phone].present? %>
+            <p class="text-red-500 text-sm mt-1">
+              <%= @municipe.errors[:phone].first %>
+            </p>
+          <% end %>
+        </div>
+        <div class="w-1/3 px-2">
+          <%= form.label :email, t('activerecord.attributes.municipe.email') %>
+          <%= form.email_field :email, class: "block shadow border #{@municipe.errors[:email].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+          <% if @municipe.errors[:email].present? %>
+            <p class="text-red-500 text-sm mt-1">
+              <%= @municipe.errors[:email].first %>
+            </p>
+          <% end %>
+        </div>
+        <div class="w-1/3">
+          <%= form.label :status, t('activerecord.attributes.municipe.status') %>
+          <%= form.select :status, options_for_select(t('activerecord.municipe.status').map { |i| [i.last, i.first] }, form.object.status),
+                          { include_blank: true }, class: "form-select block shadow #{@municipe.errors[:status].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+          <% if @municipe.errors[:status].present? %>
+            <p class="text-red-500 text-sm mt-1">
+              <%= @municipe.errors[:status].first %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+      <div class="my-5">
+        <%= form.label :photo, t('activerecord.attributes.municipe.photo') %>
+        <%= form.file_field :photo, class: "block shadow border #{@municipe.errors[:photo].any? ? 'border border-red-500' : 'border-zinc-200'} outline-none px-3 py-3 mt-2 w-full" %>
+        <% if @municipe.errors[:photo].present? %>
+          <p class="text-red-500 text-sm mt-1">
+            <%= @municipe.errors[:photo].first %>
+          </p>
+        <% end %>
+      </div>
+    </div>
+    <hr class="border-2 border-zinc-200" />
+    <div class="my-5">
+      <%= form.fields_for :address, form.object.address do |address_form| %>
+        <%= render 'address', form: address_form %>
+      <% end %>
+    </div>
+  </div>
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-zinc-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
