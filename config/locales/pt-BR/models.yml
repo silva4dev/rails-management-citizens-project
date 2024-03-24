@@ -1,0 +1,32 @@
+pt-BR:
+  activerecord:
+    models:
+      address:
+        one: 'Endereço'
+        other: 'Endereços'
+      municipe:
+        one: 'Municipe'
+        other: 'Municipes'
+    attributes:
+      address:
+        city: 'Cidade'
+        complement: 'Complemento'
+        district: 'Bairro'
+        state: 'Estado'
+        street: 'Logradouro'
+        cep: 'CEP'
+        ibge_code: 'Código IBGE'
+      municipe:
+        date_of_birth: 'Data de Nascimento'
+        cns: 'CNS'
+        cpf: 'CPF'
+        email: 'E-mail'
+        full_name: 'Nome Completo'
+        phone: 'Telefone'
+        photo: 'Foto'
+        status: 'Status'
+    municipe:
+      status:
+        active: 'Ativo'
+        inactive: 'Inativo'
+
