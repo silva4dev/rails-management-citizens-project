@@ -11,6 +11,7 @@ As principais tecnologias utilizadas neste projeto são:
 - Elasticsearch 🔍
 - Twilio 📱
 - Docker 🐳
+- TypeScript 📝
 - Tailwind 🎨
 
 ## 🛠️ Setup
