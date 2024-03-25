@@ -4,7 +4,6 @@
 </div>
 <%= form_with url: municipes_path, method: :get, local: true, class: "mb-[2.5rem]" do |form| %>
   <div class="mb-2">
-    <%= form.label :search, class: "w-full inline-block" %>
     <%= form.text_field :search,
                         value: params[:search],
                         class: "h-14 w-full border-2 border-zinc-200 p-3 outline-none",
