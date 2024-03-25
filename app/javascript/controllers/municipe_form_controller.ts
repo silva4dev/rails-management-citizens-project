@@ -1,20 +1,33 @@
+import IMask from 'imask'
 import { Controller } from '@hotwired/stimulus'
 
 export class MunicipeFormController extends Controller {
-  static targets = ['cep', 'street', 'district', 'city', 'uf']
+  static targets = ['cep', 'street', 'district', 'city', 'uf', 'cpf', 'cns', 'phone']
 
   streetTarget: HTMLInputElement
   districtTarget: HTMLInputElement
   cityTarget: HTMLInputElement
   ufTarget: HTMLInputElement
   cepTarget: HTMLInputElement
+  cpfTarget: HTMLInputElement
+  cnsTarget: HTMLInputElement
+  phoneTarget: HTMLInputElement
 
   connect () {
-    this.cepTarget.addEventListener('input', () => {
-      this.cepTarget.value = this.cepTarget.value
-        .replace(/\D/g, '')
-        .slice(0, 8)
-        .replace(/^(\d{5})(\d)/, '$1-$2')
+    IMask(this.cepTarget, {
+      mask: '00000-000'
+    })
+
+    IMask(this.cpfTarget, {
+      mask: '000.000.000-00'
+    })
+
+    IMask(this.cnsTarget, {
+      mask: '000000000000000'
+    })
+
+    IMask(this.phoneTarget, {
+      mask: '+55 (00) 00000-0000'
     })
   }
 
