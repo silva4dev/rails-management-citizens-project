@@ -17,7 +17,7 @@ class MunicipesController < ApplicationController
   end
 
   def create
-    input = { municipe_params: municipe_params }
+    input = { municipe_params: }
     @municipe = CreateMunicipeUsecase.new(municipe_repository).execute(input)
     respond_to do |format|
       if @municipe.valid?
@@ -32,7 +32,7 @@ class MunicipesController < ApplicationController
   end
 
   def update
-    input = { id: params[:id], municipe_params: municipe_params }
+    input = { id: params[:id], municipe_params: }
     @municipe = UpdateMunicipeUsecase.new(municipe_repository).execute(input)
     respond_to do |format|
       if @municipe.valid?
